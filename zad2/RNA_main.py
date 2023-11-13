@@ -1,7 +1,5 @@
 from Bio import PDB
 from sys import argv
-import numpy as np
-import matplotlib as plt
 from Bio.PDB import calc_dihedral
 
 # check if the user has provided a PDB file
@@ -11,20 +9,7 @@ if len(argv) != 2:
 
 # parse the PDB file and get the structure
 parser = PDB.PDBParser(QUIET=True)
-structure = parser.get_structure(argv[1][-8:-4:1], argv[1])
-
-# check if it's a RNA structure or a protein
-nucleotides = ["A", "C", "G", "U"]
-RNAorProtein = 0
-for model in structure:
-    for chain in model:
-        for residue in chain:
-            if residue.get_resname() in nucleotides:
-                RNAorProtein = 0
-                break
-            else:
-                RNAorProtein = 1
-                break
+structure = parser.get_structure(argv[1][-8:-4], argv[1])
 
 
 def get_atom_vector(residue, atom_name):
@@ -41,15 +26,19 @@ def calculate_dihedral(v1, v2, v3, v4):
         return "N/A"
 
 
-if RNAorProtein == 0:
-    headers = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "chi"]
-    with open("RNAoutcome.txt", "w") as f:
-        f.write(",".join(headers) + "\n")
+headers = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "chi"]
+with open("RNAoutcome.txt", "w") as f:
+    f.write(",".join(headers) + "\n")
+    for chain in structure.get_chains():
         residues = list(chain)
         i = 0
         while i < len(residues):
             residue = residues[i]
             residue_name = residue.get_resname()
+            # pomin wode
+            # if residue_name == "HOH":
+            #     i += 1
+            #     continue
             if i > 0:
                 prev_residue = residues[i - 1]
                 if "O3'" in prev_residue:

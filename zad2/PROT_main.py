@@ -6,11 +6,6 @@ import math
 
 
 def degrees(rad_angle):
-    """Converts any angle in radians to degrees.
-
-    If the input is None, the it returns None.
-    For numerical input, the output is mapped to [-180,180]
-    """
     if rad_angle is None:
         return None
     angle = rad_angle * 180 / math.pi
@@ -21,7 +16,6 @@ def degrees(rad_angle):
     return angle
 
 
-# ta funkcja sprawdza cos innego calkiem potem trzeba to zamienic zeby dawalo info czy jest beta sheet czy co inengo
 def ramachandran_type(psi, phi):
     zakres = 45
 

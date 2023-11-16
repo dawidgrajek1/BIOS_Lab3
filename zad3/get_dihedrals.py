@@ -26,8 +26,8 @@ def calculate_dihedral(v1, v2, v3, v4):
         return "N/A"
 
 
-headers = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "chi"]
-with open("RNAoutcome.txt", "w") as f:
+headers = ["resname", "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "chi"]
+with open("dihedrals.csv", "w") as f:
     f.write(",".join(headers) + "\n")
     for chain in structure.get_chains():
         residues = list(chain)
@@ -86,7 +86,7 @@ with open("RNAoutcome.txt", "w") as f:
                 o4, c1, n, c4w if residue_name == "A" or residue_name == "G" else c2w
             )
 
-            angles = [alpha, beta, gamma, delta, epsilon, zeta, chi]
-            line = " ".join(map(str, angles))
+            angles = [residue_name, alpha, beta, gamma, delta, epsilon, zeta, chi]
+            line = ",".join(map(str, angles))
             f.write(line + "\n")
             i += 1

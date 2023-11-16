@@ -80,8 +80,8 @@ with open("RNAoutcome.txt", "w") as f:
             beta = calculate_dihedral(p, o5, c5, c4)
             gamma = calculate_dihedral(o5, c5, c4, c3)
             delta = calculate_dihedral(c5, c4, c3, o3)
-            epsilon = calculate_dihedral(c4, c3, o3, p)
-            zeta = calculate_dihedral(c3, o3, p, o5)
+            epsilon = calculate_dihedral(c4, c3, o3, pn)
+            zeta = calculate_dihedral(c3, o3, pn, o5n)
             chi = calculate_dihedral(
                 o4, c1, n, c4w if residue_name == "A" or residue_name == "G" else c2w
             )

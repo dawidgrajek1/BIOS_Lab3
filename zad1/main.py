@@ -48,5 +48,5 @@ contact_map = contact_map[0 : len(residueList), 0 : len(residueList)]
 # show the contact map
 plt.imshow(contact_map, cmap="binary", interpolation="nearest")
 # plt.gca().invert_yaxis()
-plt.savefig(str(argv[1][-8:-4:1]) + "_contact_map.png", bbox_inches="tight")
+plt.savefig(str(argv[1][-8:-4:1]) + "_contact_map.png", bbox_inches="tight", dpi=300)
 plt.show()

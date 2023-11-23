@@ -3,7 +3,6 @@ from Bio.PDB.DSSP import DSSP
 from sys import argv
 import numpy as np
 import matplotlib.pyplot as plt
-import math
 
 
 ramachandran_type = {
@@ -16,7 +15,7 @@ ramachandran_type = {
     "S": 7,
     "-": 8,
     "P": 8,
-    "!": 8
+    "!": 8,
 }
 
 # check if the user has provided a PDB file
@@ -39,7 +38,16 @@ for model in structure:
         ramachandran[int(res[5]) + 180][int(res[4]) + 180] = ramachandran_type[res[2]]
 
 fig, ax = plt.subplots()
-types = ["Alpha-helix (4-12)", "Isolated beta-bridge residue", "Strand", "3-10 helix", "Pi helix", "Turn", "Bend", "None"]
+types = [
+    "Alpha-helix (4-12)",
+    "Isolated beta-bridge residue",
+    "Strand",
+    "3-10 helix",
+    "Pi helix",
+    "Turn",
+    "Bend",
+    "None",
+]
 plt.title("Ramachandran plot for " + pdb_code)
 for i in range(1, len(types) + 1):
     indices = np.where(ramachandran == i)
